@@ -1,0 +1,67 @@
+{% extends 'base.html'%}
+
+{% block extra_css %}
+<link rel="stylesheet" href="./static/css/proyectos.css">
+{% endblock %}
+
+{% block content%}
+<main class="contenedor_principal, fondo_header">
+    <h2 class="mayusculas">mis habilidades</h2>
+    <div class="contenedor_habilidades">
+
+        <section class="habilidad">
+            <h3>BMI</h3>
+            <div class="contenedor_icono">
+                <img src="static/img/OIP.webp" alt="IMC" width="300" height="200">
+            </div>
+            <div>
+                <p>
+                    <strong>
+                   Aplicacion web flask basica de BMI
+                   </strong>
+                </p>
+            </div>
+            <form action="{{url_for('iMC')}}" method="get">
+            <button class="boton_ab" type="submit">VER AQUÍ</button>
+            </form>
+        </section>
+
+        <section class="habilidad">
+            <h3>
+                CALCULADORA
+            </h3>
+            <div class="contenedor_icono">
+                <img src="/static/img/calculadora.webp" alt="zapato" width="300" height="200">
+            </div>
+            <div>
+                <p> <strong>Calculadora online</strong></p>
+            </div>
+             <form action="{{url_for('calculadora')}}" method="get">
+            <button class="boton_ab" type="submit">VER AQUÍ</button>
+            </form>
+        </section>
+
+
+
+        <section class="habilidad">
+            <h3>
+                PROYECTO
+            </h3>
+            <div class="contenedor_icono"> 
+                <img src="/static/img/logoagro.jfif"width="300" height="200" alt="agroprime">
+            </div>
+            <div>
+                <p>
+                    <strong>
+                        Proyecto de graduación, este proyecto es una aplicación web de contabilidad basica.
+                    </strong>
+                </p>
+            </div>
+            <form  method="get">
+            <button class="boton_ab"a="https://github.com/sergin07/agroprime4" type="submit">VER AQUÍ</button>
+            
+        </section>
+    </div>
+</main>
+
+{%endblock%}

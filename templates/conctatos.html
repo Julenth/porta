@@ -1,0 +1,44 @@
+{% extends 'base.html'%}
+
+{% block extra_css %}
+<link rel="stylesheet" href="./static/css/conctatos.css">
+{% endblock %}
+
+{% block content%}
+
+    
+    <div class="contenedor_contacto">
+        <div class="contenedor_formulario">
+            <h2 >Contactame</h2>
+            <form>
+               
+                <div class="contenedor_campo">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+               
+                <div class="contenedor_campo">
+                    <label for="phone">Celular:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                
+                <div class="contenedor_campo">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                
+                <div class="contenedor_campo">
+                    <label for="message">Mensaje:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <div class="contenedor_campo">
+                    <input type="submit" value="Enviar" class="btn_contactar">
+                </div>
+            </form>
+        </div>
+    </div>
+{%endblock%}

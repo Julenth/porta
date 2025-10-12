@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora IMC</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/imc.css') }}">
+</head>
+<body>
+    <div class="main">
+        <h1>📊 IMC Calculator</h1>
+        
+        <form method="POST">
+            <table>
+                <tr>
+                    <td><label>Peso (kg):</label></td>
+                    <td><input type="number" name="peso" class="textview" step="0.1" placeholder="70(KG)" required></td>
+                </tr>
+                <tr>
+                    <td><label>Altura (m):</label></td>
+                    <td><input type="number" name="altura" class="textview" step="0.01" placeholder="1.75(M)" required></td>
+                </tr>
+            </table>
+            
+            <div class="form-boton">
+                <button type="submit" class="boton_ab">Calcular IMC</button>
+            </div>
+        </form>
+        
+        {% if imc %}
+            <div style="margin-top: 30px; padding: 15px; border: 2px solid rgb(102, 102, 196); border-radius: 8px;">
+                <h2 style="color: rgb(102, 102, 196); text-align: center;">✓ Tu Resultado</h2>
+                <table style="width: 100%; text-align: center; color: rgb(235, 235, 235); font-family: 'Lekton', sans-serif; font-size: 18px;">
+                    <tr>
+                        <td><strong>IMC:</strong></td>
+                        <td style="color: rgb(102, 102, 196); font-size: 24px; font-weight: bold;">{{ imc }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Categoría:</strong></td>
+                        <td>{{ categoria }}</td>
+                    </tr>
+                </table>
+            </div>
+        {% endif %}
+        <form class="form-boton" action="{{'proyectos'}}" method="get">
+            <button class="boton_ab" type="submit">Volver</button>
+        </form>
+    </div>
+</body>
+</html>

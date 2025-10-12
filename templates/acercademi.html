@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+
+{% block extra_css %}
+<link rel="stylesheet" href="./static/css/acercademi.css">
+{% endblock %}
+
+{% block content%}
+<div class="contenedor_acercademi">
+<img class="fotoperfil" src="/static/img/Gato.webp" alt="fotoperfil">
+   <div class="cont_acerca">
+       <h1 class="nombre">Thomas Gelves</h1><br>
+       <h2 class="profesion">PROGRAMACION DE SOFWARE
+        <p class="descripcion">
+        Me gusta mucho la programacion web, actualmente estoy aprendiendo a usar frameworks como Flask y Django para el desarrollo web y mysql para la gestion de bases de datos.
+       </h2>
+       
+
+        <h2 class="profesion">PROYECTOS
+        <p class="descripcion">
+        estoy desarrollando un proyecto llamado Agroprime, es una aplicación WEB su función es ser un sistema de contabilidad sencillo para las personas que no se saben como adiministrar su propio negocio.
+        </p>  
+        </h2>
+         
+   </div>
+
+</div>
+
+{%endblock%}

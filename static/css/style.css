@@ -1,0 +1,227 @@
+.btnMenu{
+    display: none;
+    background-color: #111;
+  }
+body:not(.nombre.profesion, .descripcion){
+    font-family: "Gill Sans", sans-serif;
+    margin: 0;
+    background:#1f2833;
+    text-align: center;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+ .barra_navegacion{
+  margin: 0;
+  background: #111;
+  color: black;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+ }
+
+
+  .barra_navegacion{
+  background: #111;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+ }
+ .navegacion_principal{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    font-size: 20px;
+  }            
+  /*logos*/   
+  .navegacion_principal a,       
+   .navegacion_redes{
+    color: #f2f2f2;
+    margin: 1 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.5s ease;
+   }
+    .btnMenu{
+    display: none;
+    background-color: #111;
+  }
+  a{
+    padding: 10px;
+  }
+  a:hover {
+    color: rgb(102, 102, 196);
+    transform: scale(1.2); 
+    transition-duration: 0.8s; 
+  }
+
+  @media(max-width: 480px ){
+    .btnMenu{
+      display: block
+      
+    }
+    #btnMenu{
+      color: #fdebeb;
+      background-color: transparent;
+      margin: 10px 0 0 10px;
+      border: none;
+      
+    }
+    #btnMenu svg{
+      width: 25px;
+      height: 25px;
+    }
+  .barra_navegacion{
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  .navegacion_principal{
+    flex-direction: column;
+  }
+  .navegacion_redes svg{
+    width: 25px;
+    height: 25px;
+  }
+  .no_navbar{
+    display: none;
+  }
+  .navar{
+    display: flex;
+  }
+  }
+
+  /*conctacto*/
+.contenedor_contacto{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+}
+.fondo_header{
+    background:#1f2833;
+    color: white;}
+
+  /*formulario*/
+  .contenedor_formulario{
+background-color: #111;
+padding: 30px;
+border-radius: 8px;
+box-shadow: 0px 4px 10px rgb(0, 0, 0, 0.5);
+width: 100%;
+max-width: 400px;
+}
+.contenedor_campo{
+margin-bottom: 15px;
+}
+.contenedor_campo input,
+.contenedor_campo textarea{
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #333333; /*crea un borde solido de color gris*/
+    border-radius: 4px;
+    background-color: #e1e1e1;
+    color: #0c0c0f;
+    box-sizing: border-box; /*mantiene el tamaño sin importar los bordes, o paddings*/
+    transition: all 0.3s ease;}
+/*footer*/
+
+/*habilidades*/
+.contenedor_habilidades {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    color: #0b0c10;
+}
+.habilidad {
+  background: rgb(201, 190, 190);
+  border-radius: 12px;
+  padding: 1.5rem;
+}  
+/*acercademi*/
+.fotoperfil{
+  width: 40%;
+  height: 30%;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  float: left;
+  margin-top: auto; 
+  text-align: center;
+  margin-right: 20px;
+  margin-top: auto
+}
+.nombre{
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+.profesion{
+  font-size: 20px;
+  text-align: center;
+  font-style: italic;
+}
+
+footer{
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 14px;
+
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+.contenedor_acercademi{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: justify;
+  
+}
+
+.habilidad {
+  background: rgb(201, 190, 190);
+  border-radius: 12px;
+  padding: 1.5rem;
+}  
+
+.contenedor_icono{
+    margin-bottom: 1rem;
+ }
+#mi_mapa{
+  height: 400px;
+  width: 600px;
+  margin: auto;
+}
+
+.boton_conctatar{
+ text-align: center;
+ padding: 30px;
+ 
+}
+
+.boton{
+  height: 30px;
+  width: 40px;
+}
+
+

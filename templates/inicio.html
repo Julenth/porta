@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+
+{% block extra_css %}
+<link rel="stylesheet" href="./static/css/inicio.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="contenedor_formulario">
+<h1 class="titulo">Qué quieres hacer</h1>
+    <div>
+        <h2>Ver mi fortafolio</h2>
+        <form action="{{url_for('index')}}" method="get">
+            <button class="boton_ab" type="submit">VER AQUÍ</button>
+        </form>
+        <h2>Iniciar Sesión</h2>
+        <form action="{{url_for('login')}}" method="get">
+            <button class="boton_ab" type="submit">VER AQUÍ</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+{%endblock%}

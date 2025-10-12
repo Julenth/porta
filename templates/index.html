@@ -1,0 +1,103 @@
+{% extends 'base.html'%}
+
+{% block extra_css %}
+<link rel="stylesheet" href="./static/css/index.css">
+{% endblock %}
+
+{% block content%}
+        <div class="contenedor_header">
+            <header>
+                <h1 class="titulo_principal"> 
+                    Thomas Gelves  aprendiz de programacion de sofware
+                </h1>
+            </header>
+        </div>
+
+        <div id="mi_mapa">
+            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+            <script>
+                   let map = L.map('mi_mapa').setView([6.955707, -71.871494],16)
+                   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                   }).addTo(map);
+
+                   L.marker([6.955707, -71.871494]).addTo(map)
+                   .bindPopup('Mi Ubicación')
+                   .openPopup();
+
+            </script>
+
+        </div>
+
+    <main class="contenedor_principal, fondo_header">
+        <h2 class="mayusculas">mis habilidades</h2>
+        <div class="contenedor_habilidades">
+            <section class="habilidad">
+                <h3>HTML</h3>
+
+                <div class="contenedor_icono">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-linecap="round" stroke-linejoin="round" width="60" height="60" stroke-width="1.25">
+                        <path d="M20 4l-2 14.5l-6 2l-6 -2l-2 -14.5z"></path>
+                        <path d="M15.5 8h-7l.5 4h6l-.5 3.5l-2.5 .75l-2.5 -.75l-.1 -.5"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p>
+                       Elemetos como esenciales en html los manejo, misproyectos las mayorias los trabajo con html tengo una experiencia haciendo paginas webs medianamente decentes, tengo conocimientos tambien frameworks como Bootstrap y Tailwind.
+                    </p>
+                </div>
+
+            </section>
+
+            <section class="habilidad">
+                <h3>
+                    CSS
+                </h3>
+                <div class="contenedor_icono">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-linecap="round" stroke-linejoin="round" width="60" height="60" stroke-width="2">
+                        <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                        <path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4"></path>
+                        <path d="M8 16.5a1.5 1.5 0 0 0 -3 0v3a1.5 1.5 0 0 0 3 0"></path>
+                        <path
+                            d="M11 20.25c0 .414 .336 .75 .75 .75h1.25a1 1 0 0 0 1 -1v-1a1 1 0 0 0 -1 -1h-1a1 1 0 0 1 -1 -1v-1a1 1 0 0 1 1 -1h1.25a.75 .75 0 0 1 .75 .75">
+                        </path>
+                        <path
+                            d="M17 20.25c0 .414 .336 .75 .75 .75h1.25a1 1 0 0 0 1 -1v-1a1 1 0 0 0 -1 -1h-1a1 1 0 0 1 -1 -1v-1a1 1 0 0 1 1 -1h1.25a.75 .75 0 0 1 .75 .75">
+                        </path>
+                    </svg>
+                </div>
+                <div>
+                    <p>Tengos conocimientos basicos de frameworks de este tipo,  tambiento varios proyectos utilizanto este tipo de herramienta</p>
+                </div>
+            </section>
+            <section class="habilidad">
+                <h3>
+                    PYTON
+                </h3>
+                <div class="contenedor_icono">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-linecap="round" stroke-linejoin="round" width="60" height="60" stroke-width="2">
+                        <path d="M12 9h-7a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h3"></path>
+                        <path d="M12 15h7a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-3"></path>
+                        <path
+                            d="M8 9v-4a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v5a2 2 0 0 1 -2 2h-4a2 2 0 0 0 -2 2v5a2 2 0 0 0 2 2h4a2 2 0 0 0 2 -2v-4">
+                        </path>
+                        <path d="M11 6l0 .01"></path>
+                        <path d="M13 18l0 .01"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p>
+                       mi proyecto se basa en pyton tengo conocimientos basicos de este lenguaje de programacion manejo f                  lask y demas frameworks
+                    </p>
+                </div>
+            </section>
+        </div>
+        
+    </main>
+
+    
+{%endblock%}
