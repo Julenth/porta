@@ -1,54 +1,123 @@
 {% extends 'base.html'%}
 
 {% block extra_css %}
-<link rel="stylesheet" href="./static/css/proyectos.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/proyectos.css') }}">
+<style>
+/* Estilos adicionales para que las tarjetas de proyectos dinámicos se vean bien */
+.card-proyecto-dinamico {
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-bottom: 25px;
+    color: #fff;
+    text-align: center;
+}
+.card-proyecto-dinamico h3 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+.card-proyecto-dinamico img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.boton_ver_dinamico {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+.boton_ver_dinamico:hover {
+    background-color: #0056b3;
+}
+</style>
 {% endblock %}
 
 {% block content%}
-<main class="contenedor_principal, fondo_header">
-    <h2 class="mayusculas">mis habilidades</h2>
+<main class="contenedor_principal fondo_header">
+    <h2 class="mayusculas" style="text-align: center; margin-bottom: 40px;">Mis Proyectos</h2>
     <div class="contenedor_habilidades">
 
+        <!-- *************** 1. SECCIONES ESTÁTICAS *************** -->
+        
         <section class="habilidad">
-            <h3>BMI</h3>
+            <h3>IMC</h3>
             <div class="contenedor_icono">
-                <img src="static/img/OIP.webp" alt="IMC" width="300" height="200">
+                <img src="{{ url_for('static', filename='img/OIP.webp') }}" alt="IMC" width="300" height="200">
             </div>
             <div>
                 <p>
-                    <strong>
-                   Aplicacion web flask basica de BMI
-                   </strong>
+                    <strong>Aplicacion web flask basica de IMC</strong>
                 </p>
             </div>
             <form action="{{url_for('iMC')}}" method="get">
-            <button class="boton_ab" type="submit">VER AQUÍ</button>
+                <button class="boton_ab" type="submit">VER AQUÍ</button>
             </form>
         </section>
 
         <section class="habilidad">
-            <h3>
-                CALCULADORA
-            </h3>
+            <h3>CALCULADORA</h3>
             <div class="contenedor_icono">
-                <img src="/static/img/calculadora.webp" alt="zapato" width="300" height="200">
+                <img src="{{ url_for('static', filename='img/calculadora.webp') }}" alt="Calculadora" width="300" height="200">
             </div>
             <div>
                 <p> <strong>Calculadora online</strong></p>
             </div>
-             <form action="{{url_for('calculadora')}}" method="get">
-            <button class="boton_ab" type="submit">VER AQUÍ</button>
+            <form action="{{url_for('calculadora')}}" method="get">
+                <button class="boton_ab" type="submit">VER AQUÍ</button>
             </form>
         </section>
 
-
+        <!-- *************** 2. SECCIONES DINÁMICAS (LISTA DE PROYECTOS) *************** -->
+        {% if proyectos %}
+            {% for proyecto in proyectos %}
+                <section class="card-proyecto-dinamico">
+                    <h3>{{ proyecto.nombre }}</h3>
+                    <div class="contenedor_icono">
+                        <!-- Usar la URL de la base de datos si existe -->
+                        {% if proyecto.imagen_url %}
+                            <img src="{{ proyecto.imagen_url }}" alt="Imagen de {{ proyecto.nombre }}" width="300" height="200">
+                        {% endif %}
+                    </div>
+                    <div>
+                        <p>
+                            <strong>{{ proyecto.descripcion }}</strong>
+                        </p>
+                    </div>
+                    
+                    <!-- CÓDIGO DINÁMICO REQUERIDO -->
+                    {% if proyecto.enlace_web %}
+                        <!-- Usa el enlace directo para URLs externas -->
+                        <a href="{{ proyecto.enlace_web }}" target="_blank" class="boton_ver_dinamico">Ver Proyecto</a>
+                    {% endif %}
+                    <!-- FIN CÓDIGO DINÁMICO -->
+                    
+                </section>
+            {% endfor %}
+        {% else %}
+            <!-- Si no hay proyectos en la base de datos -->
+            <p style="text-align: center; width: 100%; color: #aaa;">No hay proyectos dinámicos disponibles en este momento.</p>
+        {% endif %}
+        <!-- ************************************************************ -->
+        
+        <!-- El proyecto Agroprime original lo moví a la sección dinámica o lo puedes dejar como estático si es especial.
+             Si quieres que el Proyecto Agroprime siga siendo estático, puedes recrear su sección aquí, 
+             pero con la corrección del botón. -->
 
         <section class="habilidad">
             <h3>
-                PROYECTO
+                PROYECTO AGROPRIME
             </h3>
             <div class="contenedor_icono"> 
-                <img src="/static/img/logoagro.jfif"width="300" height="200" alt="agroprime">
+                <img src="{{ url_for('static', filename='img/logoagro.jfif') }}" width="300" height="200" alt="agroprime">
             </div>
             <div>
                 <p>
@@ -57,11 +126,10 @@
                     </strong>
                 </p>
             </div>
-            <form  method="get">
-            <button class="boton_ab"a="https://github.com/sergin07/agroprime4" type="submit">VER AQUÍ</button>
-            
+            <!-- Botón corregido para usar un enlace directo -->
+            <a href="https://github.com/sergin07/agroprime4" target="_blank" class="boton_ab" style="text-decoration: none;">VER AQUÍ</a>
         </section>
+
     </div>
 </main>
-
 {%endblock%}

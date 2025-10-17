@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+
+{% block extra_css %}
+<link rel="stylesheet" href="./static/css/conctatos.css"> 
+{% endblock %}
+
+{% block content%}
+<div class="contenedor_contacto">
+    <div class="contenedor_formulario">
+        <h2>{% if habilidad %}Editar Habilidad: {{ habilidad.nombre }}{% else %}Crear Nueva Habilidad{% endif %}</h2>
+        
+        <form method="POST">
+            <div class="contenedor_campo">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" value="{{ habilidad.nombre if habilidad else '' }}" required>
+            </div>
+            
+            <div class="contenedor_campo">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" required>{{ habilidad.descripcion if habilidad else '' }}</textarea>
+            </div>
+            
+            <div class="contenedor_campo">
+                <label for="icono_svg">Icono SVG (Path/Código de la figura):</label>
+                <textarea id="icono_svg" name="icono_svg" required placeholder="Ej: <path d='...'></path>">{{ habilidad.icono_svg if habilidad else '' }}</textarea>
+            </div>
+            
+            <div class="contenedor_campo">
+                <input type="submit" value="{% if habilidad %}Guardar Cambios{% else %}Crear Habilidad{% endif %}" class="btn_contactar">
+            </div>
+        </form>
+        <div class="contenedor_campo">
+            <a href="{{ url_for('editar_habilidades_lista') }}" class="boton_ab" style="display: block; text-align: center; margin-top: 10px;">Cancelar</a>
+        </div>
+    </div>
+</div>
+{%endblock%}

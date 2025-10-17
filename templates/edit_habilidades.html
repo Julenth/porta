@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+
+{% block extra_css %}
+<link rel="stylesheet" href="./static/css/index.css"> 
+{% endblock %}
+
+{% block content%}
+<div class="contenedor_principal">
+    <h2 class="mayusculas">Gestión de Habilidades</h2>
+    <a href="{{ url_for('editar_habilidad') }}" class="boton_ab" style="display: inline-block; margin-bottom: 20px;">+ Agregar Nueva Habilidad</a>
+
+    <div class="contenedor_habilidades" style="display: block;">
+        {% for habilidad in habilidades %}
+        <section class="habilidad" style="padding: 20px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 8px;">
+            <h3>{{ habilidad.nombre }}</h3>
+            <p>{{ habilidad.descripcion }}</p>
+            
+            <div style="margin-top: 15px;">
+                <a href="{{ url_for('editar_habilidad', habilidad_id=habilidad.id) }}" class="boton_ab">Editar</a>
+
+                <form method="POST" action="{{ url_for('eliminar_habilidad', habilidad_id=habilidad.id) }}" 
+                      style="display: inline-block; margin-left: 10px;" 
+                      onsubmit="return confirm('¿Estás seguro de que quieres eliminar la habilidad {{ habilidad.nombre }}?');">
+                    <button type="submit" class="boton_ab" style="background-color: #d9534f; border-color: #d43f3a;">Eliminar</button>
+                </form>
+            </div>
+        </section>
+        {% endfor %}
+    </div>
+</div>
+{%endblock%}

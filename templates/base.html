@@ -15,7 +15,7 @@
     
     {% if page == "index" %}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=\" crossorigin=\"\" />
     {% endif %}
 
 </head>
@@ -25,6 +25,23 @@
     {% endif %}
 
     <main>
+        <!-- Manejo de mensajes flash para feedback de CRUD/Login -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="flash-messages" style="text-align: center; padding: 10px; margin-bottom: 20px;">
+              {% for category, message in messages %}
+                <p class="{{ category }}" style="color: white; padding: 10px; border-radius: 5px; 
+                                                 /* Estilos simples basados en la categoría del mensaje */
+                                                 {% if category == 'error' %} background-color: #d9534f;
+                                                 {% elif category == 'success' %} background-color: #5cb85c; 
+                                                 {% else %} background-color: #f0ad4e; {% endif %}">
+                    {{ message }}
+                </p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        
         {% block content %}
         {% endblock %}
     </main>
