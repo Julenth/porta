@@ -19,7 +19,7 @@
             <script>
                    let map = L.map('mi_mapa').setView([6.955707, -71.871494],16)
                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                   attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'
                    }).addTo(map);
 
                    L.marker([6.955707, -71.871494]).addTo(map)
@@ -31,6 +31,13 @@
 
     <main class="contenedor_principal, fondo_header">
         <h2 class="mayusculas">mis habilidades</h2>
+        
+        {% if session.get('usuario') %}
+            <div style="text-align: center; margin-bottom: 25px;">
+                <a href="{{ url_for('editar_habilidades_lista') }}" class="boton_ab" style="display: inline-block;">⚙️ Administrar Habilidades</a>
+            </div>
+        {% endif %}
+
         <div class="contenedor_habilidades">
             {% for habilidad in habilidades %}
             <section class="habilidad">
@@ -47,12 +54,13 @@
                        {{ habilidad.descripcion }}
                     </p>
                 </div>
-
             </section>
             {% endfor %}
+            {% if not habilidades %}
+                <p style="text-align: center; width: 100%; color: #aaa;">No hay habilidades registradas. ¡Inicia sesión para agregarlas!</p>
+            {% endif %}
         </div>
-        
+
     </main>
 
-    
 {%endblock%}

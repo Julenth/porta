@@ -1,135 +1,94 @@
 {% extends 'base.html'%}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/proyectos.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 <style>
-/* Estilos adicionales para que las tarjetas de proyectos dinámicos se vean bien */
-.card-proyecto-dinamico {
-    background-color: #333;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+.contenedor_principal {
+    max-width: 900px;
+    margin: 40px auto;
     padding: 20px;
-    margin-bottom: 25px;
-    color: #fff;
-    text-align: center;
+    background-color: #333; /* Fondo oscuro */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    color: #eee;
 }
-.card-proyecto-dinamico h3 {
+
+.card-proyecto-gestion {
+    background-color: #444;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.card-proyecto-gestion h3 {
     color: #007bff;
+    margin-bottom: 5px;
+}
+
+.card-proyecto-gestion p {
     margin-bottom: 10px;
 }
-.card-proyecto-dinamico img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
-.boton_ver_dinamico {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
+
+.controles a, .controles button {
+    margin-right: 10px;
+    padding: 8px 15px;
     border: none;
     border-radius: 5px;
-    margin-top: 15px;
-    transition: background-color 0.3s;
     cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s;
 }
-.boton_ver_dinamico:hover {
+
+.controles a {
+    background-color: #007bff;
+    color: white;
+}
+.controles a:hover {
     background-color: #0056b3;
 }
+
+.controles button {
+    background-color: #d9534f; 
+    color: white;
+}
+.controles button:hover {
+    background-color: #c9302c;
+}
+
 </style>
 {% endblock %}
 
 {% block content%}
-<main class="contenedor_principal fondo_header">
-    <h2 class="mayusculas" style="text-align: center; margin-bottom: 40px;">Mis Proyectos</h2>
-    <div class="contenedor_habilidades">
+<div class="contenedor_principal">
+    <h2 class="mayusculas">Gestión de Proyectos</h2>
+    
+    <a href="{{ url_for('editar_proyecto') }}" class="boton_ab" style="display: inline-block; margin-bottom: 20px;">+ Agregar Nuevo Proyecto</a>
 
-        <!-- *************** 1. SECCIONES ESTÁTICAS *************** -->
-        
-        <section class="habilidad">
-            <h3>IMC</h3>
-            <div class="contenedor_icono">
-                <img src="{{ url_for('static', filename='img/OIP.webp') }}" alt="IMC" width="300" height="200">
-            </div>
-            <div>
-                <p>
-                    <strong>Aplicacion web flask basica de IMC</strong>
-                </p>
-            </div>
-            <form action="{{url_for('iMC')}}" method="get">
-                <button class="boton_ab" type="submit">VER AQUÍ</button>
-            </form>
-        </section>
-
-        <section class="habilidad">
-            <h3>CALCULADORA</h3>
-            <div class="contenedor_icono">
-                <img src="{{ url_for('static', filename='img/calculadora.webp') }}" alt="Calculadora" width="300" height="200">
-            </div>
-            <div>
-                <p> <strong>Calculadora online</strong></p>
-            </div>
-            <form action="{{url_for('calculadora')}}" method="get">
-                <button class="boton_ab" type="submit">VER AQUÍ</button>
-            </form>
-        </section>
-
-        <!-- *************** 2. SECCIONES DINÁMICAS (LISTA DE PROYECTOS) *************** -->
+    <div class="contenedor_proyectos" style="display: block;">
         {% if proyectos %}
             {% for proyecto in proyectos %}
-                <section class="card-proyecto-dinamico">
-                    <h3>{{ proyecto.nombre }}</h3>
-                    <div class="contenedor_icono">
-                        <!-- Usar la URL de la base de datos si existe -->
-                        {% if proyecto.imagen_url %}
-                            <img src="{{ proyecto.imagen_url }}" alt="Imagen de {{ proyecto.nombre }}" width="300" height="200">
-                        {% endif %}
-                    </div>
-                    <div>
-                        <p>
-                            <strong>{{ proyecto.descripcion }}</strong>
-                        </p>
-                    </div>
-                    
-                    <!-- CÓDIGO DINÁMICO REQUERIDO -->
-                    {% if proyecto.enlace_web %}
-                        <!-- Usa el enlace directo para URLs externas -->
-                        <a href="{{ proyecto.enlace_web }}" target="_blank" class="boton_ver_dinamico">Ver Proyecto</a>
-                    {% endif %}
-                    <!-- FIN CÓDIGO DINÁMICO -->
-                    
-                </section>
+            <div class="card-proyecto-gestion">
+                <h3>{{ proyecto.nombre }} (ID: {{ proyecto.id }})</h3>
+                <p>{{ proyecto.descripcion }}</p>
+                <small>URL: <a href="{{ proyecto.url_repositorio }}" target="_blank" style="color: #6bb9f0;">{{ proyecto.url_repositorio }}</a></small><br>
+                <small>Imagen: {{ proyecto.url_imagen }}</small>
+                
+                <div class="controles" style="margin-top: 15px;">
+                    <a href="{{ url_for('editar_proyecto', proyecto_id=proyecto.id) }}">Editar</a>
+
+                    <form method="POST" action="{{ url_for('eliminar_proyecto', proyecto_id=proyecto.id) }}" 
+                          style="display: inline-block; margin-left: 10px;">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </div>
+            </div>
             {% endfor %}
         {% else %}
-            <!-- Si no hay proyectos en la base de datos -->
-            <p style="text-align: center; width: 100%; color: #aaa;">No hay proyectos dinámicos disponibles en este momento.</p>
+            <p style="text-align: center;">No hay proyectos para gestionar. ¡Crea uno!</p>
         {% endif %}
-        <!-- ************************************************************ -->
-        
-        <!-- El proyecto Agroprime original lo moví a la sección dinámica o lo puedes dejar como estático si es especial.
-             Si quieres que el Proyecto Agroprime siga siendo estático, puedes recrear su sección aquí, 
-             pero con la corrección del botón. -->
-
-        <section class="habilidad">
-            <h3>
-                PROYECTO AGROPRIME
-            </h3>
-            <div class="contenedor_icono"> 
-                <img src="{{ url_for('static', filename='img/logoagro.jfif') }}" width="300" height="200" alt="agroprime">
-            </div>
-            <div>
-                <p>
-                    <strong>
-                        Proyecto de graduación, este proyecto es una aplicación web de contabilidad basica.
-                    </strong>
-                </p>
-            </div>
-            <!-- Botón corregido para usar un enlace directo -->
-            <a href="https://github.com/sergin07/agroprime4" target="_blank" class="boton_ab" style="text-decoration: none;">VER AQUÍ</a>
-        </section>
-
     </div>
-</main>
+</div>
 {%endblock%}

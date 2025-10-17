@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 
 {% block extra_css %}
-<link rel="stylesheet" href="./static/css/conctatos.css"> 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/conctatos.css') }}"> 
 {% endblock %}
 
 {% block content%}
@@ -22,7 +22,8 @@
             
             <div class="contenedor_campo">
                 <label for="icono_svg">Icono SVG (Path/Código de la figura):</label>
-                <textarea id="icono_svg" name="icono_svg" required placeholder="Ej: <path d='...'></path>">{{ habilidad.icono_svg if habilidad else '' }}</textarea>
+                <textarea id="icono_svg" name="icono_svg" required placeholder="Ej: path d='...'>/path">{{ habilidad.icono_svg if habilidad else '' }}</textarea>
+                <small style="color: #bbb; display: block; margin-top: 5px;">Solo el contenido SVG (generalmente el `<path d='...' ...>` o código de figura) sin el `<svg>...</svg>` exterior.</small>
             </div>
             
             <div class="contenedor_campo">

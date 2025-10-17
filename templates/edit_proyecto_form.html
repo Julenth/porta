@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/conctatos.css') }}"> 
+{% endblock %}
+
+{% block content%}
+<div class="contenedor_contacto">
+    <div class="contenedor_formulario">
+        <h2>{% if proyecto %}Editar Proyecto: {{ proyecto.nombre }}{% else %}Crear Nuevo Proyecto{% endif %}</h2> 
+        
+        <form method="POST">
+            <div class="contenedor_campo">
+                <label for="nombre">Nombre del Proyecto:</label>
+                <input type="text" id="nombre" name="nombre" value="{{ proyecto.nombre if proyecto else '' }}" required>
+            </div>
+            
+            <div class="contenedor_campo">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" required>{{ proyecto.descripcion if proyecto else '' }}</textarea>
+            </div>
+            
+            <div class="contenedor_campo">
+                <label for="url_repositorio">URL/Web:</label>
+                <input type="text" id="url_repositorio" name="url_repositorio" value="{{ proyecto.url_repositorio if proyecto else '' }}" required>
+            </div>
+            
+            <div class="contenedor_campo">
+                <label for="url_imagen">imagen:</label>
+                <input type="text" id="url_imagen" name="url_imagen" value="{{ proyecto.url_imagen if proyecto else '' }}" required>
+            </div>
+            
+            <div class="contenedor_campo">
+                <input type="submit" value="{% if proyecto %}Guardar Cambios{% else %}Crear Proyecto{% endif %}" class="btn_contactar">
+            </div>
+        </form>
+        <div class="contenedor_campo">
+            <a href="{{ url_for('editar_proyectos_lista') }}" class="boton_ab" style="display: block; text-align: center; margin-top: 10px;">Cancelar</a>
+        </div>
+    </div>
+</div>
+{%endblock%}
