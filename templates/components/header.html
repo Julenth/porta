@@ -15,6 +15,9 @@
         <a href="{{ url_for('acercademi')}}">ACERCA DE MI</a>
         <a href="{{ url_for('proyectos')}}">PROYECTOS</a>
         <a href="{{ url_for('conctatos')}}">CONTACTO</a>
+        {% if session.get('rol') =='admin' %}
+           <a href="{{ url_for('logout')}}">Cerrar Session</a>
+        {%endif%}
     </nav>
         
     <form class="navegacion_redes">

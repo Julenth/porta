@@ -26,8 +26,8 @@
             </div>
             
             <div class="contenedor_campo">
-                <label for="url_imagen">imagen:</label>
-                <input type="text" id="url_imagen" name="url_imagen" value="{{ proyecto.url_imagen if proyecto else '' }}" required>
+                <label for="url_imagen"> SVG:</label>
+                <input type="text   " id="url_imagen" name="url_imagen" value="{{ proyecto.url_imagen if proyecto else '' }}" required>
             </div>
             
             <div class="contenedor_campo">
@@ -37,6 +37,7 @@
         <div class="contenedor_campo">
             <a href="{{ url_for('editar_proyectos_lista') }}" class="boton_ab" style="display: block; text-align: center; margin-top: 10px;">Cancelar</a>
         </div>
+        
     </div>
 </div>
 {%endblock%}

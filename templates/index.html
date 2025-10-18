@@ -32,7 +32,7 @@
     <main class="contenedor_principal, fondo_header">
         <h2 class="mayusculas">mis habilidades</h2>
         
-        {% if session.get('usuario') %}
+        {% if session.get('rol') =='admin' %}
             <div style="text-align: center; margin-bottom: 25px;">
                 <a href="{{ url_for('editar_habilidades_lista') }}" class="boton_ab" style="display: inline-block;">⚙️ Administrar Habilidades</a>
             </div>

@@ -31,8 +31,7 @@ def admin_required(f):
 
 @app.route('/logout')
 def logout():
-    session.pop('usuario', None)
-    session.pop('rol', None)
+    session.clear() 
     return redirect(url_for('inicio'))
 
 @app.route('/')
@@ -165,9 +164,9 @@ def editar_proyectos_lista():
     conexion = obtener_coneccion()
     cursor = conexion.cursor(dictionary=True)
     cursor.execute("SELECT id, nombre, descripcion, url_repositorio, url_imagen FROM proyectos ORDER BY id DESC")
-    proyectos = cursor.fetchall()
+    proyecto = cursor.fetchall()
     conexion.close()
-    return render_template('proyectos.html', proyectos=proyectos)
+    return render_template('edit_proyecto.html', proyecto=proyecto)
 
 @app.route('/editar_proyecto', methods=['GET', 'POST'], defaults={'proyecto_id': None})
 @app.route('/editar_proyecto/<int:proyecto_id>', methods=['GET', 'POST'])

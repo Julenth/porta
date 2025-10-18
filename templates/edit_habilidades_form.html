@@ -1,11 +1,12 @@
 {% extends 'base.html'%}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/conctatos.css') }}"> 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/conctatos.css') }}" > 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" > 
 {% endblock %}
 
 {% block content%}
-<div class="contenedor_contacto">
+<div class="contenedor_contacto" style="height: auto ;">
     <div class="contenedor_formulario">
         <h2>{% if habilidad %}Editar Habilidad: {{ habilidad.nombre }}{% else %}Crear Nueva Habilidad{% endif %}</h2>
         
@@ -23,7 +24,7 @@
             <div class="contenedor_campo">
                 <label for="icono_svg">Icono SVG (Path/Código de la figura):</label>
                 <textarea id="icono_svg" name="icono_svg" required placeholder="Ej: path d='...'>/path">{{ habilidad.icono_svg if habilidad else '' }}</textarea>
-                <small style="color: #bbb; display: block; margin-top: 5px;">Solo el contenido SVG (generalmente el `<path d='...' ...>` o código de figura) sin el `<svg>...</svg>` exterior.</small>
+                <small style="color: #bbb; display: block; margin-top: 5px;">Solo el contenido SVG (generalmente el `<path d='...' ...>` o código de figura) sin el `</small>
             </div>
             
             <div class="contenedor_campo">
