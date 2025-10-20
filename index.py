@@ -164,9 +164,9 @@ def editar_proyectos_lista():
     conexion = obtener_coneccion()
     cursor = conexion.cursor(dictionary=True)
     cursor.execute("SELECT id, nombre, descripcion, url_repositorio, url_imagen FROM proyectos ORDER BY id DESC")
-    proyecto = cursor.fetchall()
+    proyectos = cursor.fetchall()
     conexion.close()
-    return render_template('edit_proyecto.html', proyecto=proyecto)
+    return render_template('edit_proyecto.html', proyectos=proyectos)
 
 @app.route('/editar_proyecto', methods=['GET', 'POST'], defaults={'proyecto_id': None})
 @app.route('/editar_proyecto/<int:proyecto_id>', methods=['GET', 'POST'])

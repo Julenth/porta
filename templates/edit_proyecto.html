@@ -1,43 +1,45 @@
 {% extends 'base.html'%}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<link rel="stylesheet" href="./static/css/index.css"> 
 {% endblock %}
 
 {% block content %}
 <div class="contenedor_principal">
     <h2 class="mayusculas">Gestión de Proyectos</h2>
-    <a href="{{ url_for('editar_proyecto') }}" class="boton_ab" style="display: inline-block; margin-bottom: 20px;">
-        + Agregar Nuevo Proyecto
-    </a>
+    <a href="{{ url_for('editar_proyecto') }}" class="boton_ab" style="display: inline-block; margin-bottom: 20px;">+ Agregar Nuevo Proyecto</a>
 
-    <div class="contenedor_proyectos" style="display: block;">
+    <div class="contenedor_habilidades" style="display: block;">
         {% for proyecto in proyectos %}
-        <section class="proyecto" style="padding: 20px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 8px;">
+        <section class="habilidad" style="padding: 20px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 8px;">
             <h3>{{ proyecto.nombre }}</h3>
             <p>{{ proyecto.descripcion }}</p>
-
+            
             {% if proyecto.url_imagen %}
                 <div style="margin: 10px 0;">
                     <img src="{{ proyecto.url_imagen }}" alt="Imagen de {{ proyecto.nombre }}" width="200" style="border-radius: 6px;">
                 </div>
             {% endif %}
-
+            
+            {% if proyecto.url_repositorio %}
+                <p style="font-size: 14px; color: #666;"><strong>URL:</strong> {{ proyecto.url_repositorio }}</p>
+            {% endif %}
+            
             <div style="margin-top: 15px;">
-                <!-- Botón Editar -->
                 <a href="{{ url_for('editar_proyecto', proyecto_id=proyecto.id) }}" class="boton_ab">Editar</a>
 
-                <!-- Botón Eliminar -->
                 <form method="POST" action="{{ url_for('eliminar_proyecto', proyecto_id=proyecto.id) }}" 
-                      style="display: inline-block; margin-left: 10px;"
+                      style="display: inline-block; margin-left: 10px;" 
                       onsubmit="return confirm('¿Estás seguro de que quieres eliminar el proyecto {{ proyecto.nombre }}?');">
-                    <button type="submit" class="boton_ab" style="background-color: #d9534f; border-color: #d43f3a;">
-                        Eliminar
-                    </button>
+                    <button type="submit" class="boton_ab" style="background-color: #d9534f; border-color: #d43f3a;">Eliminar</button>
                 </form>
             </div>
         </section>
         {% endfor %}
+        
+        {% if not proyectos %}
+            <p style="text-align: center; color: #aaa;">No hay proyectos registrados. ¡Haz clic en "Agregar Nuevo Proyecto" para comenzar!</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
