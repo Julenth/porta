@@ -1,18 +1,23 @@
 from flask import Flask, render_template, request, redirect, session, url_for
 import mysql.connector
 from functools import wraps
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 
 app = Flask(__name__)   
-app.secret_key = "thomas"
+app.secret_key = os.getenv('SECRET_KEY')
 
 def obtener_coneccion():
     return mysql.connector.connect( 
-        host='localhost',
-        user='root',
-        password='thomas2009', 
-        database='porta'   
+        host=os.getenv('DB_HOST'),
+        user=os.getenv('DB_USER'),
+        password=os.getenv('DB_PASSWORD'), 
+        database=os.getenv('DB_NAME')   
     )
-
+    
 def login_required(f):
     @wraps(f)
     def funcion_decorativa (*args, **kwargs):
